@@ -9,6 +9,6 @@
 void displayDB(std::vector<std::shared_ptr<Student>>&);
 void addNewStudents(std::vector<std::shared_ptr<Student>>&);
 void searchBySurename(std::vector<std::shared_ptr<Student>>&);
-
+void searchByPesel(std::vector<std::shared_ptr<Student>>&);
 
 #endif /* STUDENT_HPP_ */

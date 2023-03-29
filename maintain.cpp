@@ -48,3 +48,17 @@ void searchBySurename(std::vector<std::shared_ptr<Student>>& vec)
 			std::cout<<"Nothing found\n";
 	}
 }
+void searchByPesel(std::vector<std::shared_ptr<Student>>& vec)
+{
+	std::string pesel;
+		std::cout<<"Enter pesel: ";
+		std::getline(std::cin, pesel);
+		std::cout<<std::endl;
+		for(std::shared_ptr<Student> s : vec)
+		{
+			if(s->getPesel().compare(pesel) == 0)
+				s->displayStudent();
+			else
+				std::cout<<"Nothing found\n";
+		}
+}

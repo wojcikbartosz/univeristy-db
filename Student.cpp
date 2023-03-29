@@ -19,3 +19,13 @@ void Student::displayStudent()
 			std::cout<<"Female"<<std::endl;
 }
 
+
+std::string Student::getSurename() const
+{
+	return surename_;
+}
+std::string Student::getPesel() const
+{
+	return pesel_;
+}
+

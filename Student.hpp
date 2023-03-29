@@ -15,10 +15,8 @@ public:
 
 	void displayStudent();
 
-	std::string getSurename() const
-	{
-		return surename_;
-	}
+	std::string getSurename() const;
+	std::string getPesel() const;
 
 };
 

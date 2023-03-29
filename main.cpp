@@ -11,6 +11,7 @@ int main() {
 
 	searchBySurename(v);
 
+	searchByPesel(v);
 
 	return 0;
 }
