@@ -10,7 +10,6 @@ int main() {
 	displayDB(v);
 
 	searchBySurename(v);
-	std::cout<<"end\n";
 
 
 	return 0;
