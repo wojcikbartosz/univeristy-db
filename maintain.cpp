@@ -62,3 +62,24 @@ void searchByPesel(std::vector<std::shared_ptr<Student>>& vec)
 				std::cout<<"Nothing found\n";
 		}
 }
+
+void sortByPesel(std::vector<std::shared_ptr<Student>>& vec)
+{
+	bool sorted = false;
+	std::string swapHelper;
+	while(sorted == false)
+	{
+		sorted = true;
+		std::vector<std::shared_ptr<Student>>::iterator it;
+		for(it = vec.begin();(it+1)!=vec.end();it++)
+		{
+			if(stoll((*it)->getPesel())>stoll((*(it+1))->getPesel()))
+			{
+				swapHelper = (*(it+1))->getPesel();
+				(*(it+1))->setPesel((*it)->getPesel());
+				(*it)->setPesel(swapHelper);
+				sorted = false;
+			}
+		}
+	}
+}

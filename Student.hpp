@@ -17,6 +17,7 @@ public:
 
 	std::string getSurename() const;
 	std::string getPesel() const;
+	void setPesel(std::string);
 
 };
 

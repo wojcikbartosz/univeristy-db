@@ -28,4 +28,8 @@ std::string Student::getPesel() const
 {
 	return pesel_;
 }
+void Student::setPesel(std::string pesel)
+{
+	pesel_ = pesel;
+}
 

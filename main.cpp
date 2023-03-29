@@ -6,12 +6,14 @@ using namespace std;
 int main() {
 	std::vector<std::shared_ptr<Student>> v;
 	addNewStudents(v);
+	addNewStudents(v);
+	addNewStudents(v);
 
 	displayDB(v);
 
-	searchBySurename(v);
-
-	searchByPesel(v);
+	sortByPesel(v);
+	std::cout<<"sorted\n";
+	displayDB(v);
 
 	return 0;
 }
