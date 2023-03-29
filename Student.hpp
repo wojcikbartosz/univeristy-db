@@ -15,6 +15,11 @@ public:
 
 	void displayStudent();
 
+	std::string getSurename() const
+	{
+		return surename_;
+	}
+
 };
 
 #endif /* STUDENT_HPP_ */

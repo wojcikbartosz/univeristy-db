@@ -6,11 +6,10 @@ using namespace std;
 int main() {
 	std::vector<std::shared_ptr<Student>> v;
 	addNewStudents(v);
-	for(auto s: v)
-	{
-		s->displayStudent();
-	}
 
+	displayDB(v);
+
+	searchBySurename(v);
 
 
 	return 0;

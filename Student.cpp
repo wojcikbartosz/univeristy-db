@@ -12,6 +12,10 @@ Student::Student (std::string name, std::string surename, std::string address, s
 void Student::displayStudent()
 {
 		std::cout<<"Name: "<<name_<<"\nSurename: "<<surename_<<"\nAddress: "<<address_<<"\nIndex number: "<<indexNumber_
-				<<"\nPesel: "<<pesel_<<"\nSex: "<<pesel_<<std::endl;
+				<<"\nPesel: "<<pesel_<<"\nSex: ";
+		if(sex_ == true)
+			std::cout<<"Male"<<std::endl;
+		else
+			std::cout<<"Female"<<std::endl;
 }
 
