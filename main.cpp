@@ -3,7 +3,8 @@
 #include "maintain.hpp"
 using namespace std;
 
-int main() {
+int main()
+{
 	std::vector<std::shared_ptr<Student>> v;
 	addNewStudents(v);
 	addNewStudents(v);
@@ -12,7 +13,7 @@ int main() {
 	displayDB(v);
 
 	sortByPesel(v);
-	std::cout<<"sorted\n";
+	std::cout << "sorted\n";
 	displayDB(v);
 
 	return 0;
