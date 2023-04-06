@@ -6,18 +6,18 @@ class Student
 {
 private:
 	std::string name_;
-	std::string surename_;
+	std::string surname_;
 	std::string address_;
 	std::string indexNumber_;
 	std::string pesel_;
 	bool sex_;
 
 public:
-	Student(std::string name, std::string surename, std::string address, std::string indexNumber, std::string pesel, bool sex);
+	Student(std::string name, std::string surname, std::string address, std::string indexNumber, std::string pesel, bool sex);
 
 	void displayStudent();
 
-	std::string getSurename() const;
+	std::string getSurname() const;
 	std::string getPesel() const;
 	void setPesel(std::string);
 };

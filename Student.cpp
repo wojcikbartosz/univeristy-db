@@ -1,9 +1,9 @@
 
 #include "Student.hpp"
 #include <iostream>
-Student::Student(std::string name, std::string surename, std::string address, std::string indexNumber, std::string pesel, bool sex)
+Student::Student(std::string name, std::string surname, std::string address, std::string indexNumber, std::string pesel, bool sex)
 	: name_(name),
-	  surename_(surename),
+	  surname_(surname),
 	  address_(address),
 	  indexNumber_(indexNumber),
 	  pesel_(pesel),
@@ -12,7 +12,7 @@ Student::Student(std::string name, std::string surename, std::string address, st
 }
 void Student::displayStudent()
 {
-	std::cout << "Name: " << name_ << "\nSurename: " << surename_ << "\nAddress: " << address_ << "\nIndex number: " << indexNumber_
+	std::cout << "Name: " << name_ << "\nSurname: " << surname_ << "\nAddress: " << address_ << "\nIndex number: " << indexNumber_
 			  << "\nPesel: " << pesel_ << "\nSex: ";
 	if (sex_ == true)
 		std::cout << "Male" << std::endl;
@@ -20,9 +20,9 @@ void Student::displayStudent()
 		std::cout << "Female" << std::endl;
 }
 
-std::string Student::getSurename() const
+std::string Student::getSurname() const
 {
-	return surename_;
+	return surname_;
 }
 std::string Student::getPesel() const
 {
