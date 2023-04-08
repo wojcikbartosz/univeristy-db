@@ -12,12 +12,12 @@ int main()
 
 	displayDB(v);
 
-	deleteByIndexNumber(v);
+	//deleteByIndexNumber(v);
 
-	displayDB(v);
-	/*sortBySurname(v);
+	//displayDB(v);
+	sortBySurname(v);
 	std::cout << "sorted\n";
-	displayDB(v);*/
+	displayDB(v);
 
 	return 0;
 }

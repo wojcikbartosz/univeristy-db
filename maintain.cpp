@@ -16,6 +16,7 @@ void addNewStudents(std::vector<std::shared_ptr<Student>> &vec)
 	std::string indexNumber_;
 	std::string pesel_;
 	std::string sex_;
+	bool correctInputData = true, sexFlag;
 
 	std::cout << "Enter name: ";
 	std::getline(std::cin, name_);
@@ -24,13 +25,53 @@ void addNewStudents(std::vector<std::shared_ptr<Student>> &vec)
 	std::cout << "\nEnter address: ";
 	std::getline(std::cin, address_);
 	std::cout << "\nEnter index number: ";
-	std::getline(std::cin, indexNumber_);
+	do
+	{
+		correctInputData = true;
+		std::getline(std::cin, indexNumber_);
+		try{
+			std::cout<<std::stoll(indexNumber_);
+		}
+		catch(std::invalid_argument const &ex)
+		{
+			std::cout<<"wrong value, try again\nEnter index number: ";
+			correctInputData = false;
+		}
+		
+	} while (correctInputData == false);
+	
+	
 	std::cout << "\nEnter pesel: ";
-	std::getline(std::cin, pesel_);
+	do
+	{
+		correctInputData = true;
+		std::getline(std::cin, pesel_);
+		try{
+			std::cout<<std::stoll(pesel_);
+		}
+		catch(std::invalid_argument const &ex)
+		{
+			std::cout<<"wrong input, try again\nEnter pesel: ";
+			correctInputData = false;
+		}
+		
+	} while (correctInputData == false);
+
 	std::cout << "\nEnter sex [m/f]: ";
-	std::getline(std::cin, sex_);
+	while(true)
+	{
+		std::getline(std::cin, sex_);
+		if(sex_ == "m" || sex_ == "f")
+			break;
+		std::cout<<"wrong input, try again\nEnter sex: ";
+	}
+	if(sex_ == "m")
+		sexFlag = true;
+	else
+		sexFlag = false;
+	
 	std::cout << std::endl;
-	vec.push_back(std::make_shared<Student>(name_, surname_, address_, indexNumber_, pesel_, false));
+	vec.push_back(std::make_shared<Student>(name_, surname_, address_, indexNumber_, pesel_, sexFlag));
 }
 
 void searchBySurname(std::vector<std::shared_ptr<Student>> &vec)
