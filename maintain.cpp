@@ -1,14 +1,14 @@
 #include "maintain.hpp"
 
-void displayDB(std::vector<Person*> &vec)
+void displayDB(std::vector<std::shared_ptr<Person>> &vec)
 {
-	for (Person* s : vec)
+	for (std::shared_ptr<Person> s : vec)
 	{
 		s->displayData();
 	}
 }
 
-void addNewStudent(std::vector<Person*> &vec)
+void addNewStudent(std::vector<std::shared_ptr<Person>> &vec)
 {
 	std::string name_;
 	std::string surname_;
@@ -71,10 +71,10 @@ void addNewStudent(std::vector<Person*> &vec)
 		sexFlag = false;
 	
 	std::cout << std::endl;
-	vec.push_back(new Student(name_, surname_, address_, indexNumber_, pesel_, sexFlag));
+	vec.push_back(std::make_shared<Student>(name_, surname_, address_, indexNumber_, pesel_, sexFlag));
 }
 
-void addNewEmployee(std::vector<Person*> &vec)
+void addNewEmployee(std::vector<std::shared_ptr<Person>> &vec)
 {
 	std::string name_;
 	std::string surname_;
@@ -137,19 +137,19 @@ void addNewEmployee(std::vector<Person*> &vec)
 		sexFlag = false;
 	
 	std::cout << std::endl;
-	vec.push_back(new Employee(name_, surname_, address_, salary_, pesel_, sexFlag));
+	vec.push_back(std::make_shared<Employee>(name_, surname_, address_, salary_, pesel_, sexFlag));
 }
 
 
 
 
-void searchBySurname(std::vector<Person*> &vec)
+void searchBySurname(std::vector<std::shared_ptr<Person>> &vec)
 {
 	std::string surname;
 	std::cout << "Enter surname: ";
 	std::getline(std::cin, surname);
 	std::cout << std::endl;
-	for (Person* s : vec)
+	for (std::shared_ptr<Person> s : vec)
 	{
 		if (s->getSurname().compare(surname) == 0)
 			s->displayData();
@@ -157,13 +157,13 @@ void searchBySurname(std::vector<Person*> &vec)
 			std::cout << "Nothing found\n";
 	}
 }
-void searchByPesel(std::vector<Person*> &vec)
+void searchByPesel(std::vector<std::shared_ptr<Person>> &vec)
 {
 	std::string pesel;
 	std::cout << "Enter pesel: ";
 	std::getline(std::cin, pesel);
 	std::cout << std::endl;
-	for (Person* s : vec)
+	for (std::shared_ptr<Person> s : vec)
 	{
 		if (s->getPesel().compare(pesel) == 0)
 		{
@@ -175,10 +175,10 @@ void searchByPesel(std::vector<Person*> &vec)
 	}
 }
 
-void sortByPesel(std::vector<Person*> &vec)
+void sortByPesel(std::vector<std::shared_ptr<Person>> &vec)
 {
 	bool sorted = false;
-	std::vector<Person*>::iterator it;
+	std::vector<std::shared_ptr<Person>>::iterator it;
 	while (sorted == false)
 	{
 		sorted = true;
@@ -193,12 +193,12 @@ void sortByPesel(std::vector<Person*> &vec)
 		}
 	}
 }
-void sortBySurname(std::vector<Person*> &vec)
+void sortBySurname(std::vector<std::shared_ptr<Person>> &vec)
 {
 	std::string surname1, surname2;
 	std::string::iterator char1, char2;
 	bool sorted = false;
-	std::vector<Person*>::iterator it;
+	std::vector<std::shared_ptr<Person>>::iterator it;
 	while (sorted == false)
 	{
 		sorted = true;
@@ -236,13 +236,13 @@ void sortBySurname(std::vector<Person*> &vec)
 		}
 	}
 }
-/*void deleteByIndexNumber(std::vector<Person*> &vec)
+/*void deleteByIndexNumber(std::vector<std::shared_ptr<Person>> &vec)
 {
 	std::string indexNumber;
 	std::cout << "Enter index number: ";
 	std::getline(std::cin, indexNumber);
 	std::cout << std::endl;
-	std::vector<Person*>::iterator it = vec.begin();
+	std::vector<std::shared_ptr<Person>>::iterator it = vec.begin();
 	while(true)
 	{
 		if(it==vec.end())
@@ -262,10 +262,3 @@ void sortBySurname(std::vector<Person*> &vec)
 }*/
 
 
-void freeSpace(std::vector<Person*> &vec)
-{
-	for(Person *it : vec)
-	{
-		delete it;
-	}
-}

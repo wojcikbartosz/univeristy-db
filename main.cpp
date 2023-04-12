@@ -5,10 +5,10 @@ using namespace std;
 
 int main()
 {
-	std::vector<Person*> v;
+	std::vector<std::shared_ptr<Person>> v;
 	addNewStudent(v);
 	addNewStudent(v);
-	addNewStudent(v);
+	addNewEmployee(v);
 
 	displayDB(v);
 
@@ -18,7 +18,6 @@ int main()
 	sortBySurname(v);
 	std::cout << "sorted\n";
 	displayDB(v);
-	freeSpace(v);
 
 	return 0;
 }
