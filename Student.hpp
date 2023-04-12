@@ -1,25 +1,21 @@
 #ifndef STUDENT_HPP_
 #define STUDENT_HPP_
 #include <string>
+#include "Person.hpp"
+#include "IHasIndexNumber.hpp"
+class Student : public Person, public IHasIndexNumber
+{
 
-class Student {
-private:
-	std::string name_;
-	std::string surename_;
-	std::string address_;
-	std::string indexNumber_;
-	std::string pesel_;
-	bool sex_;
 public:
-	Student(std::string name, std::string surename, std::string address, std::string indexNumber, std::string pesel, bool sex);
+	Student(std::string name, std::string surname, std::string address, std::string indexNumber, std::string pesel, bool sex);
+	Student() {}
+	~Student() override {}
 
-	void displayStudent();
+	std::string getIndexNumber() const override;
 
-	std::string getSurename() const
-	{
-		return surename_;
-	}
+	void setIndexNumber(std::string indexNumber)override;
 
+	void displayData() const override;
 };
 
 #endif /* STUDENT_HPP_ */
