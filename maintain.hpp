@@ -13,13 +13,14 @@
 
 
 
-void displayDB(std::vector<std::shared_ptr<Person>> &);
-void addNewStudent(std::vector<std::shared_ptr<Person>> &);
-void addNewEmployee(std::vector<std::shared_ptr<Person>> &);
-void searchBySurname(std::vector<std::shared_ptr<Person>> &);
-void searchByPesel(std::vector<std::shared_ptr<Person>> &);
-void sortByPesel(std::vector<std::shared_ptr<Person>> &);
-void sortBySurname(std::vector<std::shared_ptr<Person>> &);
-void deleteByIndexNumber(std::vector<std::shared_ptr<Person>> &);
+void displayDB(std::vector<Person*> &);
+void addNewStudent(std::vector<Person*> &);
+void addNewEmployee(std::vector<Person*> &);
+void searchBySurname(std::vector<Person*> &);
+void searchByPesel(std::vector<Person*> &);
+void sortByPesel(std::vector<Person*> &);
+void sortBySurname(std::vector<Person*> &);
+void deleteByIndexNumber(std::vector<Person*> &);
+void freeSpace(std::vector<Person*> &);
 
 #endif /* STUDENT_HPP_ */

@@ -5,8 +5,8 @@ using namespace std;
 
 int main()
 {
-	std::vector<std::shared_ptr<Person>> v;
-	/*addNewStudent(v);
+	std::vector<Person*> v;
+	addNewStudent(v);
 	addNewStudent(v);
 	addNewStudent(v);
 
@@ -17,7 +17,8 @@ int main()
 	//displayDB(v);
 	sortBySurname(v);
 	std::cout << "sorted\n";
-	displayDB(v);*/
+	displayDB(v);
+	freeSpace(v);
 
 	return 0;
 }
