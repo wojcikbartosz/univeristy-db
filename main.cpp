@@ -7,17 +7,18 @@ int main()
 {
 	std::vector<std::shared_ptr<Person>> v;
 	addNewStudent(v);
-	addNewStudent(v);
 	addNewEmployee(v);
+	addNewStudent(v);
+	
 
 	displayDB(v);
 
-	//deleteByIndexNumber(v);
+	deleteByIndexNumber(v);
 
-	//displayDB(v);
-	sortBySurname(v);
+	displayDB(v);
+	/*sortBySurname(v);
 	std::cout << "sorted\n";
-	displayDB(v);
+	displayDB(v);*/
 
 	return 0;
 }
