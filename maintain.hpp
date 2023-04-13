@@ -17,9 +17,12 @@ void displayDB(std::vector<std::shared_ptr<Person>> &);
 void addNewStudent(std::vector<std::shared_ptr<Person>> &);
 void addNewEmployee(std::vector<std::shared_ptr<Person>> &);
 void searchBySurname(std::vector<std::shared_ptr<Person>> &);
-void searchByPesel(std::vector<std::shared_ptr<Person>> &);
-void sortByPesel(std::vector<std::shared_ptr<Person>> &);
+void searchById(std::vector<std::shared_ptr<Person>> &);
+void sortById(std::vector<std::shared_ptr<Person>> &);
 void sortBySurname(std::vector<std::shared_ptr<Person>> &);
 void deleteByIndexNumber(std::vector<std::shared_ptr<Person>> &);
+void changeSalaryById(std::vector<std::shared_ptr<Person>> &);
+void sortBySalary(std::vector<std::shared_ptr<Person>> &);
+void swapEmployeesToTheBeginning(std::vector<std::shared_ptr<Person>> &);
 
 #endif /* STUDENT_HPP_ */

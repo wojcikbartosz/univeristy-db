@@ -7,7 +7,7 @@
 class Employee : public Person, public IHasSalary
 {
     public:
-    Employee(std::string name, std::string surname, std::string address, std::string indexNumber, std::string pesel, bool sex);
+    Employee(std::string name, std::string surname, std::string address, std::string indexNumber, std::string Id, bool sex);
 	Employee(){}
 	~Employee() override {}
 
