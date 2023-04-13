@@ -1,5 +1,5 @@
 #include "Person.hpp"
-Person::Person(std::string name, std::string surname, std::string address, std::string Id, bool sex)
+Person::Person(std::string name, std::string surname, std::string address, std::string Id, std::string sex)
 : name_(name),
 	  surname_(surname),
 	  address_(address),
@@ -7,6 +7,9 @@ Person::Person(std::string name, std::string surname, std::string address, std::
 	  sex_(sex)
 {
 }
+
+
+
 
 std::string Person::getSurname() const
 {
@@ -24,7 +27,7 @@ std::string Person::getName() const
 {
 	return name_;
 }
-bool Person::getSex() const
+std::string Person::getSex() const
 {
 	return sex_;
 }
@@ -44,7 +47,7 @@ void Person::setId(std::string Id)
 {
 	Id_ = Id;
 }
-void Person::setSex(bool sex)
+void Person::setSex(std::string sex)
 {
 	sex_ = sex;
 }

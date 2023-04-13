@@ -1,11 +1,17 @@
 #include "DB.hpp"
+#include "Student.hpp"
+#include "Employee.hpp"
+#include "IHasIndexNumber.hpp"
+#include "IHasSalary.hpp"
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <time.h>  
 void DB::displayDB()
 {
     for (std::shared_ptr<Person> s : Persons)
-    {
-        std::cout<<"--------------\n";
+    {     
         s->displayData();
-        std::cout<<"--------------\n";
     }
 }
 void DB::addNewPerson(bool type)
@@ -16,9 +22,9 @@ void DB::addNewPerson(bool type)
     std::string indexNumberOrSalary_;
     std::string Id_;
     std::string sex_;
-    bool correctInputData = true, sexFlag;
+    bool correctInputData = true;
 
-    std::cout << "Enter name: ";
+    std::cout << "\nEnter name: ";
     std::getline(std::cin, name_);
     std::cout << "\nEnter surname: ";
     std::getline(std::cin, surname_);
@@ -51,9 +57,9 @@ void DB::addNewPerson(bool type)
         std::cout << "wrong input, try again\nEnter sex: ";
     }
     if (sex_ == "m")
-        sexFlag = true;
+        sex_ = "male";
     else
-        sexFlag = false;
+        sex_ = "female";
     if (type == false)
     {
 
@@ -73,7 +79,7 @@ void DB::addNewPerson(bool type)
             }
 
         } while (correctInputData == false);
-        Persons.push_back(std::make_shared<Student>(name_, surname_, address_, indexNumberOrSalary_, Id_, sexFlag));
+        Persons.push_back(std::make_shared<Student>(name_, surname_, address_, indexNumberOrSalary_, Id_, sex_));
     }
     else
     {
@@ -93,7 +99,7 @@ void DB::addNewPerson(bool type)
             }
 
         } while (correctInputData == false);
-        Persons.push_back(std::make_shared<Employee>(name_, surname_, address_, indexNumberOrSalary_, Id_, sexFlag));
+        Persons.push_back(std::make_shared<Employee>(name_, surname_, address_, indexNumberOrSalary_, Id_, sex_));
     }
 }
 void DB::searchBySurname()
@@ -102,13 +108,19 @@ void DB::searchBySurname()
 	std::cout << "Enter surname: ";
 	std::getline(std::cin, surname);
 	std::cout << std::endl;
+    bool result = false;
 	for (std::shared_ptr<Person> person : Persons)
 	{
 		if (person->getSurname().compare(surname) == 0)
-			person->displayData();
-		else
-			std::cout << "Nothing found\n";
+        {
+            person->displayData();
+            result = true;
+        }
 	}
+    if(result == false)
+    {
+        std::cout<<"nothing found\n";
+    }
 }
 void DB::searchById()
 {
@@ -116,16 +128,21 @@ void DB::searchById()
 	std::cout << "Enter Id: ";
 	std::getline(std::cin, Id);
 	std::cout << std::endl;
+    bool result = false;
 	for (std::shared_ptr<Person> person : Persons)
 	{
 		if (person->getId().compare(Id) == 0)
 		{
 			person->displayData();
+            result = true;
 			break;
 		}
-		else
-			std::cout << "Nothing found\n";
 	}
+    if(result == false)
+    {
+        std::cout<<"nothing found\n";
+    }
+
 }
 void DB::sortById()
 {
@@ -315,4 +332,38 @@ void DB::swapEmployeesToTheBeginning()
 			}
 		}
 	}
+}
+void DB::generateRandomData(int amount)
+{
+    srand(time(0));
+    std::string names[] = {"Azriel","Gordon","Jean-luc","William","Beverly","Amanda","Liara"};
+    std::string surNames[] = {"Odin","Freeman","Picard","Riker","Crusher","Ripley","T'soni"};
+    std::string addresses[] = {"Gemini Colony","City 17","NCC-1701-D","Riker's farm","NCC-1701-A","Sevastopol station","SSV Normandy"};
+    std::string name, surName, address, id, indexOrSalary,sex;
+    for (int i=0;i<amount;i++)
+    {
+        name = names[rand()%7];
+        surName = surNames[rand()%7];
+        address = addresses[rand()%7];
+        id  = std::to_string(rand()%89999999999 + 10000000000);
+        if((rand() % 2) == 0)
+        {
+            sex = "male";
+        }
+        else
+        {
+            sex = "female";
+        }
+        if((rand() % 2) == 0)
+        {
+            indexOrSalary = std::to_string(rand() % 899999 + 100000);
+            Persons.push_back(std::make_shared<Student>(name, surName, address, indexOrSalary, id, sex));
+        }
+        else
+        {
+            indexOrSalary = std::to_string(((double)(rand() % 8000 + 2000))/((double)(rand() % 10 + 1)));
+            Persons.push_back(std::make_shared<Employee>(name, surName, address, indexOrSalary, id, sex));
+        }
+    }
+    
 }

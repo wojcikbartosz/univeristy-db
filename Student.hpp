@@ -7,7 +7,7 @@ class Student : public Person, public IHasIndexNumber
 {
 
 public:
-	Student(std::string name, std::string surname, std::string address, std::string indexNumber, std::string Id, bool sex);
+	Student(std::string name, std::string surname, std::string address, std::string indexNumber, std::string Id, std::string sex);
 	Student() {}
 	~Student() override {}
 

@@ -8,10 +8,10 @@ protected:
     std::string surname_;
     std::string address_;
     std::string Id_;
-    bool sex_;
+    std::string sex_;
 
 public:
-    Person(std::string name, std::string surname, std::string address, std::string Id, bool sex);
+    Person(std::string name, std::string surname, std::string address, std::string Id, std::string sex);
     Person() {}
     virtual ~Person() {}
 
@@ -21,13 +21,13 @@ public:
     std::string getId() const;
     std::string getName() const;
     std::string getAddress() const;
-    bool getSex() const;
+    std::string getSex() const;
 
     void setName(std::string);
     void setSurname(std::string);
     void setAddress(std::string);
     void setId(std::string);
-    void setSex(bool);
+    void setSex(std::string);
 };
 
 #endif

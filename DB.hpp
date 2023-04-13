@@ -3,14 +3,8 @@
 
 #include <vector>
 #include "Person.hpp"
-#include "Student.hpp"
-#include "Employee.hpp"
-#include "IHasIndexNumber.hpp"
-#include "IHasSalary.hpp"
-#include <iostream>
-#include <string>
 #include <memory>
-#include <algorithm>
+
 
 class DB
 {
@@ -27,6 +21,7 @@ class DB
     void deleteByIndexNumber();
     void changeSalaryById();
     void sortBySalary();
+    void generateRandomData(int);
 
     private:
     void swapEmployeesToTheBeginning();
