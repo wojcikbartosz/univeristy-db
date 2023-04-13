@@ -6,8 +6,7 @@ int main()
 {
 	DB dataBase;
 	std::cout<<"adding\n";
-	dataBase.addNewPerson(false);
-	dataBase.addNewPerson(true);
+	dataBase.generateRandomData(6);
 	std::cout<<"----------------------\n";
 	dataBase.displayDB();
 

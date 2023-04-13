@@ -1,4 +1,12 @@
 #include "DB.hpp"
+#include "Student.hpp"
+#include "Employee.hpp"
+#include "IHasIndexNumber.hpp"
+#include "IHasSalary.hpp"
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <time.h>  
 void DB::displayDB()
 {
     for (std::shared_ptr<Person> s : Persons)
@@ -18,7 +26,7 @@ void DB::addNewPerson(bool type)
     std::string sex_;
     bool correctInputData = true, sexFlag;
 
-    std::cout << "Enter name: ";
+    std::cout << "\nEnter name: ";
     std::getline(std::cin, name_);
     std::cout << "\nEnter surname: ";
     std::getline(std::cin, surname_);
@@ -315,4 +323,32 @@ void DB::swapEmployeesToTheBeginning()
 			}
 		}
 	}
+}
+void DB::generateRandomData(int amount)
+{
+    srand(time(0));
+    std::string names[] = {"Azriel","Gordon","Jean-luc","William","Beverly","Amanda","Liara"};
+    std::string surNames[] = {"Odin","Freeman","Picard","Riker","Crusher","Ripley","T'soni"};
+    std::string addresses[] = {"Gemini Colony","City 17","NCC-1701-D","Riker's farm","NCC-1701-A","Sevastopol station","SSV Normandy"};
+    std::string name, surName, address, id, indexOrSalary;
+    bool sex;
+    for (int i=0;i<amount;i++)
+    {
+        name = names[rand()%7];
+        surName = surNames[rand()%7];
+        address = address[rand()%7];
+        id  = std::to_string(rand()%89999999999 + 10000000000);
+        sex = rand()%2;
+        if((rand() % 2) == 0)
+        {
+            indexOrSalary = std::to_string(rand() % 899999 + 100000);
+            Persons.push_back(std::make_shared<Student>(name, surName, address, indexOrSalary, id, sex));
+        }
+        else
+        {
+            indexOrSalary = std::to_string(((double)(rand() % 8000 + 2000))/((double)(rand() % 10 + 1)));
+            Persons.push_back(std::make_shared<Employee>(name, surName, address, indexOrSalary, id, sex));
+        }
+    }
+    
 }
