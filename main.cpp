@@ -1,28 +1,19 @@
 #include <iostream>
-#include "Person.hpp"
-#include "maintain.hpp"
+#include "DB.hpp"
 using namespace std;
 
 int main()
 {
-	std::vector<std::shared_ptr<Person>> v;
-	//addNewStudent(v);
-	addNewEmployee(v);
-	//addNewStudent(v);
-	//addNewEmployee(v);
-	//addNewEmployee(v);
+	DB dataBase;
+	std::cout<<"adding\n";
+	dataBase.addNewPerson(false);
+	dataBase.addNewPerson(true);
+	std::cout<<"----------------------\n";
+	dataBase.displayDB();
+
+
+
 	
-
-	displayDB(v);
-
-	//deleteByIndexNumber(v);
-	//changeSalaryById(v);
-	sortBySalary(v);
-	std::cout<<"-----------------------------\n";
-	displayDB(v);
-	/*sortBySurname(v);
-	std::cout << "sorted\n";
-	displayDB(v);*/
 
 	return 0;
 }
