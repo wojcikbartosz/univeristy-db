@@ -1,7 +1,7 @@
 
 #include "Student.hpp"
 #include <iostream>
-Student::Student(std::string name, std::string surname, std::string address, std::string indexNumber, std::string Id, bool sex)
+Student::Student(std::string name, std::string surname, std::string address, std::string indexNumber, std::string Id, std::string sex)
 	: Person(name, surname, address, Id, sex)
 	  ,IHasIndexNumber(indexNumber)
 {
@@ -18,10 +18,8 @@ void Student::setIndexNumber(std::string indexNumber)
 
 void Student::displayData()const
 {
+	std::cout<<"--------------\n";
 	std::cout << "Name: " << name_ << "\nSurname: " << surname_ << "\nAddress: " << address_ << "\nIndex number: " << indexNumber_
-			  << "\nId: " << Id_ << "\nSex: ";
-	if (sex_ == true)
-		std::cout << "Male" << std::endl;
-	else
-		std::cout << "Female" << std::endl;
+			  << "\nId: " << Id_ << "\nSex: "<<sex_<<std::endl;
+	std::cout<<"--------------\n";
 }
