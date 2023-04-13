@@ -7,18 +7,18 @@ protected:
     std::string name_;
     std::string surname_;
     std::string address_;
-    std::string pesel_;
+    std::string Id_;
     bool sex_;
 
 public:
-    Person(std::string name, std::string surname, std::string address, std::string pesel, bool sex);
+    Person(std::string name, std::string surname, std::string address, std::string Id, bool sex);
     Person() {}
     virtual ~Person() {}
 
     virtual void displayData()const = 0;
 
     std::string getSurname() const;
-    std::string getPesel() const;
+    std::string getId() const;
     std::string getName() const;
     std::string getAddress() const;
     bool getSex() const;
@@ -26,7 +26,7 @@ public:
     void setName(std::string);
     void setSurname(std::string);
     void setAddress(std::string);
-    void setPesel(std::string);
+    void setId(std::string);
     void setSex(bool);
 };
 

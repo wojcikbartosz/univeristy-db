@@ -14,7 +14,7 @@ void addNewStudent(std::vector<std::shared_ptr<Person>> &vec)
 	std::string surname_;
 	std::string address_;
 	std::string indexNumber_;
-	std::string pesel_;
+	std::string Id_;
 	std::string sex_;
 	bool correctInputData = true, sexFlag;
 
@@ -41,18 +41,18 @@ void addNewStudent(std::vector<std::shared_ptr<Person>> &vec)
 
 	} while (correctInputData == false);
 
-	std::cout << "\nEnter pesel: ";
+	std::cout << "\nEnter Id: ";
 	do
 	{
 		correctInputData = true;
-		std::getline(std::cin, pesel_);
+		std::getline(std::cin, Id_);
 		try
 		{
-			std::cout << std::stoll(pesel_);
+			std::cout << std::stoll(Id_);
 		}
 		catch (std::invalid_argument const &ex)
 		{
-			std::cout << "wrong input, try again\nEnter pesel: ";
+			std::cout << "wrong input, try again\nEnter Id: ";
 			correctInputData = false;
 		}
 
@@ -72,7 +72,7 @@ void addNewStudent(std::vector<std::shared_ptr<Person>> &vec)
 		sexFlag = false;
 
 	std::cout << std::endl;
-	vec.push_back(std::make_shared<Student>(name_, surname_, address_, indexNumber_, pesel_, sexFlag));
+	vec.push_back(std::make_shared<Student>(name_, surname_, address_, indexNumber_, Id_, sexFlag));
 }
 
 void addNewEmployee(std::vector<std::shared_ptr<Person>> &vec)
@@ -81,7 +81,7 @@ void addNewEmployee(std::vector<std::shared_ptr<Person>> &vec)
 	std::string surname_;
 	std::string address_;
 	std::string salary_;
-	std::string pesel_;
+	std::string Id_;
 	std::string sex_;
 	bool correctInputData = true, sexFlag;
 
@@ -98,28 +98,28 @@ void addNewEmployee(std::vector<std::shared_ptr<Person>> &vec)
 		std::getline(std::cin, salary_);
 		try
 		{
-			std::cout << std::stoll(salary_);
+			std::cout << std::stod(salary_);
 		}
 		catch (std::invalid_argument const &ex)
 		{
-			std::cout << "wrong value, try again\nEnter index number: ";
+			std::cout << "wrong value, try again\nEnter salary: ";
 			correctInputData = false;
 		}
 
 	} while (correctInputData == false);
 
-	std::cout << "\nEnter pesel: ";
+	std::cout << "\nEnter Id: ";
 	do
 	{
 		correctInputData = true;
-		std::getline(std::cin, pesel_);
+		std::getline(std::cin, Id_);
 		try
 		{
-			std::cout << std::stoll(pesel_);
+			std::cout << std::stoll(Id_);
 		}
 		catch (std::invalid_argument const &ex)
 		{
-			std::cout << "wrong input, try again\nEnter pesel: ";
+			std::cout << "wrong input, try again\nEnter Id: ";
 			correctInputData = false;
 		}
 
@@ -139,7 +139,7 @@ void addNewEmployee(std::vector<std::shared_ptr<Person>> &vec)
 		sexFlag = false;
 
 	std::cout << std::endl;
-	vec.push_back(std::make_shared<Employee>(name_, surname_, address_, salary_, pesel_, sexFlag));
+	vec.push_back(std::make_shared<Employee>(name_, surname_, address_, salary_, Id_, sexFlag));
 }
 
 void searchBySurname(std::vector<std::shared_ptr<Person>> &vec)
@@ -156,15 +156,15 @@ void searchBySurname(std::vector<std::shared_ptr<Person>> &vec)
 			std::cout << "Nothing found\n";
 	}
 }
-void searchByPesel(std::vector<std::shared_ptr<Person>> &vec)
+void searchById(std::vector<std::shared_ptr<Person>> &vec)
 {
-	std::string pesel;
-	std::cout << "Enter pesel: ";
-	std::getline(std::cin, pesel);
+	std::string Id;
+	std::cout << "Enter Id: ";
+	std::getline(std::cin, Id);
 	std::cout << std::endl;
 	for (std::shared_ptr<Person> s : vec)
 	{
-		if (s->getPesel().compare(pesel) == 0)
+		if (s->getId().compare(Id) == 0)
 		{
 			s->displayData();
 			break;
@@ -174,8 +174,12 @@ void searchByPesel(std::vector<std::shared_ptr<Person>> &vec)
 	}
 }
 
-void sortByPesel(std::vector<std::shared_ptr<Person>> &vec)
+void sortById(std::vector<std::shared_ptr<Person>> &vec)
 {
+	if(vec.size()<2)
+	{
+		return;
+	}
 	bool sorted = false;
 	std::vector<std::shared_ptr<Person>>::iterator it;
 	while (sorted == false)
@@ -184,7 +188,7 @@ void sortByPesel(std::vector<std::shared_ptr<Person>> &vec)
 
 		for (it = vec.begin(); (it + 1) != vec.end(); it++)
 		{
-			if (stoll((*it)->getPesel()) > stoll((*(it + 1))->getPesel()))
+			if (std::stoll((*it)->getId()) > std::stoll((*(it + 1))->getId()))
 			{
 				std::iter_swap(it, it + 1);
 				sorted = false;
@@ -194,6 +198,10 @@ void sortByPesel(std::vector<std::shared_ptr<Person>> &vec)
 }
 void sortBySurname(std::vector<std::shared_ptr<Person>> &vec)
 {
+	if(vec.size()<2)
+	{
+		return;
+	}
 	std::string surname1, surname2;
 	std::string::iterator char1, char2;
 	bool sorted = false;
@@ -212,6 +220,7 @@ void sortBySurname(std::vector<std::shared_ptr<Person>> &vec)
 				if (*char1 > *char2)
 				{
 					std::iter_swap(it, it + 1);
+					sorted = false;
 					break;
 				}
 				else if (*char1 < *char2)
@@ -248,9 +257,9 @@ void deleteByIndexNumber(std::vector<std::shared_ptr<Person>> &vec)
 			std::cout << "nothing found\n";
 			break;
 		}
-		if (dynamic_cast<IHasIndexNumber*>((*it).get()))
+		if (dynamic_cast<IHasIndexNumber *>((*it).get()))
 		{
-			IHasIndexNumber* student = dynamic_cast<IHasIndexNumber*>((*it).get());
+			IHasIndexNumber *student = dynamic_cast<IHasIndexNumber *>((*it).get());
 			if (student->getIndexNumber().compare(indexNumber) == 0)
 			{
 				vec.erase(it);
@@ -261,5 +270,96 @@ void deleteByIndexNumber(std::vector<std::shared_ptr<Person>> &vec)
 
 		else
 			it++;
+	}
+}
+void changeSalaryById(std::vector<std::shared_ptr<Person>> &vec)
+{
+	std::string Id;
+	std::cout << "Enter Id: ";
+	std::getline(std::cin, Id);
+	std::cout << std::endl;
+	for (std::shared_ptr<Person> employee : vec)
+	{
+		if (employee->getId().compare(Id) == 0)
+		{
+			if (dynamic_cast<IHasSalary *>(employee.get()))
+			{
+				bool correctInputData = false;
+				std::string salary_;
+				std::cout << "enter new salary: ";
+				do
+				{
+					correctInputData = true;
+					std::getline(std::cin, salary_);
+					try
+					{
+						std::cout << std::stoll(salary_);
+					}
+					catch (std::invalid_argument const &ex)
+					{
+						std::cout << "wrong value, try again\nEnter salary: ";
+						correctInputData = false;
+					}
+
+				} while (correctInputData == false);
+				IHasSalary *employeePtr = dynamic_cast<IHasSalary *>(employee.get());
+				employeePtr->setSalary(salary_);
+				return;
+			}
+		}
+	}
+	std::cout << "Nothing found\n";
+}
+void swapEmployeesToTheBeginning(std::vector<std::shared_ptr<Person>> &vec)
+{
+	std::vector<std::shared_ptr<Person>>::iterator it1, it2;
+
+	while (true)
+	{
+		for (it1 = vec.begin(); it1 != vec.end(); it1++)
+		{
+			if (dynamic_cast<IHasSalary *>((*it1).get()) == nullptr)
+			{
+				for (it2 = it1+1; it2 != vec.end(); it2++)
+				{
+					if (dynamic_cast<IHasSalary *>((*it2).get()))
+					{
+						std::iter_swap(it1, it2);
+						break;
+					}
+					else if(it2+1 == vec.end())
+					{
+						return;
+					}
+				}
+			}
+		}
+	}
+}
+void sortBySalary(std::vector<std::shared_ptr<Person>> &vec)
+{
+	if(vec.size()<2)
+	{
+		return;
+	}
+	swapEmployeesToTheBeginning(vec);
+	std::vector<std::shared_ptr<Person>>::iterator it;
+	bool sorted = false;
+	while(sorted == false)
+	{
+		sorted = true;
+		for(it=vec.begin();it!=vec.end();it++)
+		{
+			if(dynamic_cast<IHasSalary *>((*it).get()) && dynamic_cast<IHasSalary *>((*(it+1)).get()))
+			{
+				IHasSalary* employee1, *employee2;
+				employee1 = dynamic_cast<IHasSalary *>((*it).get());
+				employee2 = dynamic_cast<IHasSalary *>((*(it+1)).get());
+				if(std::stod(employee1->getSalary()) > std::stod(employee2->getSalary()))
+				{
+					std::iter_swap(it,it+1);
+				}
+			}
+		}
 	}
 }

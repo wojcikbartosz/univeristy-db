@@ -1,9 +1,9 @@
 #include "Person.hpp"
-Person::Person(std::string name, std::string surname, std::string address, std::string pesel, bool sex)
+Person::Person(std::string name, std::string surname, std::string address, std::string Id, bool sex)
 : name_(name),
 	  surname_(surname),
 	  address_(address),
-	  pesel_(pesel),
+	  Id_(Id),
 	  sex_(sex)
 {
 }
@@ -12,9 +12,9 @@ std::string Person::getSurname() const
 {
 	return surname_;
 }
-std::string Person::getPesel() const
+std::string Person::getId() const
 {
-	return pesel_;
+	return Id_;
 }
 std::string Person::getAddress() const
 {
@@ -40,9 +40,9 @@ void Person::setAddress(std::string address)
 {
 	address_ = address;
 }
-void Person::setPesel(std::string pesel)
+void Person::setId(std::string Id)
 {
-	pesel_ = pesel;
+	Id_ = Id;
 }
 void Person::setSex(bool sex)
 {
