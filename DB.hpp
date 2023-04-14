@@ -25,6 +25,7 @@ class DB
 
     private:
     void swapEmployeesToTheBeginning();
+    bool checkIdCorrectness(std::string const &);
 };
 
 #endif

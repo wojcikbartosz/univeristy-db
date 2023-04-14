@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
 	DB dataBase;
-	std::cout << "adding\n";
+	/*std::cout << "adding\n";
 	dataBase.generateRandomData(10);
 
 	dataBase.displayDB();
@@ -41,6 +41,8 @@ int main()
 	std::cout << "--------------------- deleting by index------------------\n";
 
 	dataBase.deleteByIndexNumber();
+	dataBase.displayDB();*/
+	dataBase.addNewPerson(true);
 	dataBase.displayDB();
 
 	return 0;
