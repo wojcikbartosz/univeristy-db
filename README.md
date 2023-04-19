@@ -1,9 +1,9 @@
 # univeristy-db
 
-I write this project to excercise and understand advanced aspects of object-oriented programing and C++ syntax.
+I write this project to excercise and understand mainly advanced aspects of object-oriented programing and C++ syntax, but also mechanisms like CMake or GIT itself.
 
 This project contains mechanisms like: abstarction, polymorphism, interfaces, smart pointers etc. The goal is to create a simple database program, capable
-of managing data storeged in it.
+of managing data storeged in it. It is still work in progress.
 
 This project contains 6 classes:
 - main class for managing data called "DB"
