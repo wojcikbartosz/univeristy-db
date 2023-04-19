@@ -347,7 +347,7 @@ void DB::swapEmployeesToTheBeginning()
 }
 void DB::generateRandomData(int amount)
 {
-	srand(time(0));
+	srand(static_cast<unsigned int>(time(0)));
 	std::string names[] = {"Azriel", "Gordon", "Jean-luc", "William", "Beverly", "Amanda", "Liara"};
 	std::string surNames[] = {"Odin", "Freeman", "Picard", "Riker", "Crusher", "Ripley", "T'soni"};
 	std::string addresses[] = {"Gemini Colony", "City 17", "NCC-1701-D", "Riker's farm", "NCC-1701-A", "Sevastopol station", "SSV Normandy"};
