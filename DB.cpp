@@ -1,12 +1,5 @@
 #include "DB.hpp"
-#include "Student.hpp"
-#include "Employee.hpp"
-#include "IHasIndexNumber.hpp"
-#include "IHasSalary.hpp"
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <time.h>
+
 void DB::displayDB()
 {
 	for (std::shared_ptr<Person> s : Persons)
@@ -320,6 +313,7 @@ void DB::sortBySalary()
 				if (std::stod(employee1->getSalary()) > std::stod(employee2->getSalary()))
 				{
 					std::iter_swap(it, it + 1);
+					sorted = false;
 				}
 			}
 		}
@@ -430,4 +424,8 @@ bool DB::checkIdCorrectness(std::string const &idNumber)
 	{
 		return false;
 	}
+}
+void DB::saveDbToFile()
+{
+	
 }
