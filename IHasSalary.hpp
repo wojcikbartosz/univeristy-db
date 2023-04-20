@@ -1,5 +1,5 @@
-#ifndef I_HAS_SALATY_HPP
-#define I_HAS_SALATY_HPP
+#ifndef I_HAS_SALARY_HPP
+#define I_HAS_SALARY_HPP
 #include <string>
 class IHasSalary
 {
