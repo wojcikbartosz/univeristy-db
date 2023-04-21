@@ -427,5 +427,40 @@ bool DB::checkIdCorrectness(std::string const &idNumber)
 }
 void DB::saveDbToFile()
 {
-	
+	std::fstream file;
+	file.open("DB",std::ios::out | std::ios::trunc);
+	if(!file.is_open())
+	{
+		std::cout<<"cant open file\n";
+		return;
+	}
+	std::string row = "";
+	for(std::shared_ptr<Person> person: Persons)
+	{
+		row.append(person->getName());
+		row.append("|");
+		row.append(person->getSurname());
+		row.append("|");
+		row.append(person->getAddress());
+		row.append("|");
+		row.append(person->getId());
+		row.append("|");
+		row.append(person->getSex());
+		row.append("|");
+		if (dynamic_cast<IHasIndexNumber *>(person.get()))
+		{
+			IHasIndexNumber *student = dynamic_cast<IHasIndexNumber *>(person.get());
+			row.append(student->getIndexNumber());
+			row.append("|S");
+		}
+		else if(dynamic_cast<IHasSalary *>(person.get()))
+		{
+			IHasSalary *employee = dynamic_cast<IHasSalary *>(person.get());
+			row.append(employee->getSalary());
+			row.append("|E");
+		}
+		row.append("\n");
+		file<<row;
+		row.clear();
+	}
 }
