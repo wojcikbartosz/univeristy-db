@@ -32,6 +32,7 @@ class DB
     void sortBySalary();
     void generateRandomData(int);
     void saveDbToFile();
+    void loadDbFromFile();
 
     private:
     void swapEmployeesToTheBeginning();

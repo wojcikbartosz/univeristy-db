@@ -1,7 +1,7 @@
 
 #include "Student.hpp"
 #include <iostream>
-Student::Student(std::string name, std::string surname, std::string address, std::string indexNumber, std::string Id, std::string sex)
+Student::Student(std::string name, std::string surname, std::string address, std::string Id, std::string sex, std::string indexNumber)
 	: Person(name, surname, address, Id, sex)
 	  ,IHasIndexNumber(indexNumber)
 {
