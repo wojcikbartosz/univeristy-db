@@ -1,5 +1,5 @@
 #include "Employee.hpp"
-Employee::Employee(std::string name, std::string surname, std::string address, std::string salary, std::string Id, std::string sex)
+Employee::Employee(std::string name, std::string surname, std::string address, std::string Id, std::string sex, std::string salary)
 	: Person(name, surname, address, Id, sex)
 	  ,IHasSalary(salary)
 {

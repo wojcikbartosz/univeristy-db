@@ -91,7 +91,7 @@ void DB::addNewPerson(bool type)
 			}
 
 		} while (correctInputData == false);
-		Persons.push_back(std::make_shared<Student>(name_, surname_, address_, indexNumberOrSalary_, Id_, sex_));
+		Persons.push_back(std::make_shared<Student>(name_, surname_, address_, Id_, sex_, indexNumberOrSalary_));
 	}
 	else
 	{
@@ -111,7 +111,7 @@ void DB::addNewPerson(bool type)
 			}
 
 		} while (correctInputData == false);
-		Persons.push_back(std::make_shared<Employee>(name_, surname_, address_, indexNumberOrSalary_, Id_, sex_));
+		Persons.push_back(std::make_shared<Employee>(name_, surname_, address_, Id_, sex_, indexNumberOrSalary_));
 	}
 }
 void DB::searchBySurname()
@@ -451,16 +451,71 @@ void DB::saveDbToFile()
 		{
 			IHasIndexNumber *student = dynamic_cast<IHasIndexNumber *>(person.get());
 			row.append(student->getIndexNumber());
-			row.append("|S");
+			row.append("|{STUDENT}");
 		}
 		else if(dynamic_cast<IHasSalary *>(person.get()))
 		{
 			IHasSalary *employee = dynamic_cast<IHasSalary *>(person.get());
 			row.append(employee->getSalary());
-			row.append("|E");
+			row.append("|{EMPLOYEE}");
 		}
-		row.append("\n");
-		file<<row;
+		row.append("|\n");
+		file.write(row.c_str(),row.length());
 		row.clear();
 	}
+	file.close();
+}
+void DB::loadDbFromFile()
+{
+	std::fstream file;
+	file.open("DB",std::ios::in);
+	if(!file.is_open())
+	{
+		std::cout<<"cant open file\n";
+		return;
+	}
+	char row[1024];
+	std::string data[7]; 
+	int pos = 0;
+	while(true)
+	{
+		for(int i=0;i<7;i++)
+		{
+			data[i].clear();
+		}
+		for(int i=0;i<1024;i++)
+		{
+			row[i] = '\0';
+		}
+		
+		file.getline(row,1024);
+		if(file.eof())
+			break;
+		pos = 0;
+		for(int i=0;i<7;i++)
+		{
+			while(true)
+			{
+				if(row[pos] == '|')
+				{
+					pos++;
+					break;
+				}
+				else
+				{
+					data[i]+=row[pos];
+					pos++;
+				}
+				
+			}
+			std::cout<<data[i]<<std::endl;
+		}
+		if(data[6] == "{EMPLOYEE}")
+			Persons.push_back(std::make_shared<Employee>(data[0], data[1], data[2], data[3], data[4], data[5]));
+		else if(data[6] == "{STUDENT}")
+			Persons.push_back(std::make_shared<Student>(data[0], data[1], data[2], data[3], data[4], data[5]));
+
+		
+	}
+	file.close();
 }

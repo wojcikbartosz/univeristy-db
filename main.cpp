@@ -6,9 +6,8 @@ int main()
 {
 	DB dataBase;
 	std::cout << "adding\n";
-	dataBase.generateRandomData(10);
-
-	dataBase.saveDbToFile();
+	
+	
 
 	return 0;
 }
