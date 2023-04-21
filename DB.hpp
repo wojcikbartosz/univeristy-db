@@ -22,7 +22,7 @@ class DB
 
     public:
     void displayDB();
-    void addNewPerson(bool);
+    void addNewPerson();
     void searchBySurname();
     void searchById();
     void sortById();
@@ -30,7 +30,7 @@ class DB
     void deleteByIndexNumber();
     void changeSalaryById();
     void sortBySalary();
-    void generateRandomData(int);
+    void generateRandomData();
     void saveDbToFile();
     void loadDbFromFile();
 

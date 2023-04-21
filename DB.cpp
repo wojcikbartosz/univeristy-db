@@ -7,7 +7,7 @@ void DB::displayDB()
 		s->displayData();
 	}
 }
-void DB::addNewPerson(bool type)
+void DB::addNewPerson()
 {
 	std::string name_;
 	std::string surname_;
@@ -15,6 +15,7 @@ void DB::addNewPerson(bool type)
 	std::string indexNumberOrSalary_;
 	std::string Id_;
 	std::string sex_;
+	std::string type;
 	bool correctInputData = true;
 
 	std::cout << "\nEnter name: ";
@@ -65,7 +66,16 @@ void DB::addNewPerson(bool type)
 		sex_ = "male";
 	else
 		sex_ = "female";
-	if (type == false)
+
+	std::cout<<"\nEnter function [e/s] e - employee s - student: ";
+	while (true)
+	{
+		std::getline(std::cin, type);
+		if (type == "e" || type == "s")
+			break;
+		std::cout << "wrong input, try again\nEnter function [e/s]: ";
+	}
+	if (type == "s")
 	{
 
 		std::cout << "\nEnter index number: ";
@@ -345,14 +355,14 @@ void DB::swapEmployeesToTheBeginning()
 		}
 	}
 }
-void DB::generateRandomData(int amount)
+void DB::generateRandomData()
 {
 	srand(static_cast<unsigned int>(time(0)));
 	std::string names[] = {"Azriel", "Gordon", "Jean-luc", "William", "Beverly", "Amanda", "Liara"};
 	std::string surNames[] = {"Odin", "Freeman", "Picard", "Riker", "Crusher", "Ripley", "T'soni"};
 	std::string addresses[] = {"Gemini Colony", "City 17", "NCC-1701-D", "Riker's farm", "NCC-1701-A", "Sevastopol station", "SSV Normandy"};
 	std::string name, surName, address, id, indexOrSalary, sex;
-	for (int i = 0; i < amount; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		name = names[rand() % 7];
 		surName = surNames[rand() % 7];
@@ -369,12 +379,12 @@ void DB::generateRandomData(int amount)
 		if ((rand() % 2) == 0)
 		{
 			indexOrSalary = std::to_string(rand() % 899999 + 100000);
-			Persons.push_back(std::make_shared<Student>(name, surName, address, indexOrSalary, id, sex));
+			Persons.push_back(std::make_shared<Student>(name, surName, address, id, sex, indexOrSalary));
 		}
 		else
 		{
 			indexOrSalary = std::to_string(((double)(rand() % 8000 + 2000)) / ((double)(rand() % 10 + 1)));
-			Persons.push_back(std::make_shared<Employee>(name, surName, address, indexOrSalary, id, sex));
+			Persons.push_back(std::make_shared<Employee>(name, surName, address, id, sex, indexOrSalary));
 		}
 	}
 }
